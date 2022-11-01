@@ -39,7 +39,7 @@ Material:
     - Vector1_c2494389a3b6474296110c0f31cc8ed9: -0.5
     - Vector1_e387340b6f8f4259994421a941258816: 0
     - _MinAlpha: 0.7
-    - _Pixelate: 16
+    - _Pixelate: 16.13
     - _Threshold: 0.95
     m_Colors: []
   m_BuildTextureStacks: []
