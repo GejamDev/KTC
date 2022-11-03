@@ -41,5 +41,7 @@ Material:
     - _MinAlpha: 0.7
     - _Pixelate: 15.625
     - _Threshold: 0.95
-    m_Colors: []
+    m_Colors:
+    - _Position: {r: 0, g: 0, b: 0, a: 0}
+    - _Scale: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
