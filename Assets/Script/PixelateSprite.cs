@@ -23,6 +23,6 @@ public class PixelateSprite : MonoBehaviour
     }
     private void Update()
     {
-
+        sr.sharedMaterial.SetFloat("_Rotation", transform.eulerAngles.z);
     }
 }
