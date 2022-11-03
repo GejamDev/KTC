@@ -7,7 +7,7 @@ public class PixelateSprite : MonoBehaviour
 {
     public SpriteRenderer sr;
     public Material mat;
-    public string materialName;
+    const string materialName = "Own";
 
     private void Awake()
     {
@@ -16,12 +16,10 @@ public class PixelateSprite : MonoBehaviour
     public void SetMaterial()
     {
         sr = GetComponent<SpriteRenderer>();
-        if (sr.sharedMaterial.name != materialName)
-        {
-            mat = Instantiate(sr.sharedMaterial);
-            mat.name = materialName;
-            sr.sharedMaterial = mat;
-        }
+
+        mat = Instantiate(sr.sharedMaterial);
+        mat.name = materialName;
+        sr.sharedMaterial = mat;
     }
     private void Update()
     {
