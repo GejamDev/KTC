@@ -40,7 +40,9 @@ Material:
     - Vector1_c2494389a3b6474296110c0f31cc8ed9: -0.5
     - Vector1_e387340b6f8f4259994421a941258816: 0
     - _MinAlpha: 0.7
+    - _OffsetTest: 0
     - _Pixelate: 15.625
+    - _Rotation: 0
     - _Threshold: 0.95
     m_Colors:
     - _Position: {r: 0, g: 0, b: 0, a: 0}
