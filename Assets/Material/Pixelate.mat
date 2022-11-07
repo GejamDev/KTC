@@ -19,6 +19,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _Emission:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -41,10 +45,15 @@ Material:
     - Vector1_e387340b6f8f4259994421a941258816: 0
     - _MinAlpha: 0.7
     - _OffsetTest: 0
-    - _Pixelate: 15.625
+    - _Pixelate: 16
+    - _PosX: -18.59972
+    - _PosY: -4.3408775
     - _Rotation: 0
+    - _ScaleX: 1
+    - _ScaleY: 1
     - _Threshold: 0.95
     m_Colors:
+    - _GlowColor: {r: 0, g: 0, b: 0, a: 0}
     - _Position: {r: 0, g: 0, b: 0, a: 0}
     - _Scale: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
