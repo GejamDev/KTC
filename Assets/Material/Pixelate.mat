@@ -46,12 +46,12 @@ Material:
     - _MinAlpha: 0.7
     - _OffsetTest: 0
     - _Pixelate: 16
-    - _PosX: -18.59972
-    - _PosY: -4.3408775
+    - _PosX: -56.00362
+    - _PosY: -8.4283905
     - _Rotation: 0
     - _ScaleX: 1
     - _ScaleY: 1
-    - _Threshold: 0.95
+    - _Threshold: 0
     m_Colors:
     - _GlowColor: {r: 0, g: 0, b: 0, a: 0}
     - _Position: {r: 0, g: 0, b: 0, a: 0}

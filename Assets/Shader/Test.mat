@@ -38,8 +38,9 @@ Material:
     m_Floats:
     - MaxPixelization: 200
     - Pixelate: 0.34
+    - Vector1_c66ac1fbced04afbbeee3e0983227ac1: 0
     - _PixelSize: 0.1
-    - _Pixelate: 0.03
-    - _Threshold: 0
+    - _Pixelate: 16
+    - _Threshold: 0.95
     m_Colors: []
   m_BuildTextureStacks: []
