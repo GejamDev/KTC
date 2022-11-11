@@ -31,7 +31,11 @@ public class PixelateSprite : MonoBehaviour
         sr.sharedMaterial.SetFloat("_PosY", transform.position.y);
         sr.sharedMaterial.SetFloat("_ScaleX", transform.lossyScale.x);
         sr.sharedMaterial.SetFloat("_ScaleY", transform.lossyScale.y);
+        sr.sharedMaterial.SetFloat("_LocalScaleX", transform.localScale.x);
+        sr.sharedMaterial.SetFloat("_LocalScaleY", transform.localScale.y);
         sr.sharedMaterial.SetFloat("_Threshold", threshold);
         sr.sharedMaterial.SetFloat("_Pixelate", pixelateAmount);
+        sr.sharedMaterial.SetVector("_SpriteAtlasSize", new Vector2(sr.sprite.rect.width, sr.sprite.rect.height));
+        sr.sharedMaterial.SetVector("_SpriteAtlasOffset", sr.sprite.rect.position);
     }
 }

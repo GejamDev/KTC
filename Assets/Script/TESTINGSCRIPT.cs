@@ -7,10 +7,10 @@ using UnityEngine;
 public class TESTINGSCRIPT : MonoBehaviour
 {
 
-    public SpriteRenderer sr;
+    public Sprite sr;
     private void Update()
     {
-        Debug.Log(sr.sprite.associatedAlphaSplitTexture);
+
     }
 }
 
