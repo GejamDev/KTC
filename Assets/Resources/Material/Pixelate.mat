@@ -47,9 +47,9 @@ Material:
     - Vector1_e387340b6f8f4259994421a941258816: 0
     - _MinAlpha: 0.7
     - _OffsetTest: 0
-    - _Pixelate: 24
-    - _PosX: -7.8
-    - _PosY: -0.41
+    - _Pixelate: 16
+    - _PosX: -13.76
+    - _PosY: 3.96
     - _Rotation: 0
     - _ScaleX: 1
     - _ScaleY: 1
@@ -58,7 +58,7 @@ Material:
     - _GlowColor: {r: 0, g: 0, b: 0, a: 0}
     - _Position: {r: 0, g: 0, b: 0, a: 0}
     - _Scale: {r: 0, g: 0, b: 0, a: 0}
-    - _SpriteAtlasOffset: {r: 669, g: 599, b: 0, a: 0}
-    - _SpriteAtlasSize: {r: 676, g: 476, b: 0, a: 0}
+    - _SpriteAtlasOffset: {r: 729, g: 802, b: 0, a: 0}
+    - _SpriteAtlasSize: {r: 500, g: 500, b: 0, a: 0}
     - _SpriteSize: {r: 1000, g: 1000, b: 0, a: 0}
   m_BuildTextureStacks: []

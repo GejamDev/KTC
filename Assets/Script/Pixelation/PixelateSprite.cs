@@ -19,7 +19,7 @@ public class PixelateSprite : MonoBehaviour
     public void SetMaterial()
     {
         sr = GetComponent<SpriteRenderer>();
-        Material mat = Resources.Load<Material>("Material/Pixelate");
+        Material mat = Instantiate(Resources.Load<Material>("Material/Pixelate"));
         sr.material = mat;
         mat.name = materialName;
         sr.sharedMaterial = mat;
