@@ -8,8 +8,8 @@ public class PixelateSprite : MonoBehaviour
 {
     SpriteRenderer sr;
     const string materialName = "Own";
-    public float threshold;
-    public float pixelateAmount;
+    public float threshold = 0.95f;
+    public float pixelateAmount = 16;
 
 
     private void Awake()
@@ -19,8 +19,8 @@ public class PixelateSprite : MonoBehaviour
     public void SetMaterial()
     {
         sr = GetComponent<SpriteRenderer>();
-        Material mat;
-        mat = Instantiate(sr.sharedMaterial);
+        Material mat = Resources.Load<Material>("Material/Pixelate");
+        sr.material = mat;
         mat.name = materialName;
         sr.sharedMaterial = mat;
     }

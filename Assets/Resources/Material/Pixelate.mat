@@ -42,13 +42,14 @@ Material:
     m_Floats:
     - Vector1_1e3a06f1a8934f7fabcfa2f27fe6c40f: 0
     - Vector1_5a71c6cb16514633804164f340b60a75: 0
+    - Vector1_a2b39f46afd042b397cbcd51479a6f0a: 0
     - Vector1_c2494389a3b6474296110c0f31cc8ed9: -0.5
     - Vector1_e387340b6f8f4259994421a941258816: 0
     - _MinAlpha: 0.7
     - _OffsetTest: 0
-    - _Pixelate: 16
-    - _PosX: -31.005
-    - _PosY: -3.316
+    - _Pixelate: 24
+    - _PosX: -7.8
+    - _PosY: -0.41
     - _Rotation: 0
     - _ScaleX: 1
     - _ScaleY: 1
@@ -57,5 +58,7 @@ Material:
     - _GlowColor: {r: 0, g: 0, b: 0, a: 0}
     - _Position: {r: 0, g: 0, b: 0, a: 0}
     - _Scale: {r: 0, g: 0, b: 0, a: 0}
+    - _SpriteAtlasOffset: {r: 669, g: 599, b: 0, a: 0}
+    - _SpriteAtlasSize: {r: 676, g: 476, b: 0, a: 0}
     - _SpriteSize: {r: 1000, g: 1000, b: 0, a: 0}
   m_BuildTextureStacks: []
