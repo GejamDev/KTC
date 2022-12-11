@@ -81,8 +81,8 @@ public class Rigging : MonoBehaviour
 
 
         //scale
-
-        g.transform.localScale = new Vector2(b.thiccness, dir.magnitude / dir_injoint.magnitude);
+        Vector2 targetscale = new Vector2(b.thiccness, dir.magnitude / dir_injoint.magnitude);
+        g.transform.localScale = new Vector2(targetscale.x * (g.transform.localScale.x / g.transform.lossyScale.x), targetscale.y * (g.transform.localScale.y / g.transform.lossyScale.y));
 
 
         //rotation
