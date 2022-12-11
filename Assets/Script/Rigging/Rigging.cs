@@ -38,7 +38,7 @@ public class Rigging : MonoBehaviour
         }
         if (b.boneObject.pivotStart == null)
         {
-            if (b.boneObject.obj.transform.Find("PivotStart")!= null)
+            if (b.boneObject.obj.transform.Find("PivotStart") != null)
             {
                 b.boneObject.pivotStart = b.boneObject.obj.transform.Find("PivotStart");
             }
@@ -104,6 +104,8 @@ public class Rigging : MonoBehaviour
         Debug.DrawRay(t1.position, t2.position - t1.position, Color.blue);
 
     }
+
+
 }
 [System.Serializable]
 public class Bone

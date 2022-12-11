@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Test
-  m_Shader: {fileID: -6465566751694194690, guid: e800ea2deb9c51848849d6780d6c90dc, type: 3}
+  m_Name: PixelOutline
+  m_Shader: {fileID: -6465566751694194690, guid: bc1e43b293fb5314797d5059ff394c16, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,10 +19,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 19654ee7a074cdc40a09e56f4e0ca08b, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -35,12 +31,6 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - MaxPixelization: 200
-    - Pixelate: 0.34
-    - Vector1_c66ac1fbced04afbbeee3e0983227ac1: 0
-    - _PixelSize: 0.1
-    - _Pixelate: 16
-    - _Threshold: 0.95
+    m_Floats: []
     m_Colors: []
   m_BuildTextureStacks: []

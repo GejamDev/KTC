@@ -168,8 +168,6 @@ class PixelateSpriteEditor : Editor
         EditorGUILayout.PropertyField(pixelateAmount);
 
 
-
-
         serializedObject.ApplyModifiedProperties();
     }
 }
