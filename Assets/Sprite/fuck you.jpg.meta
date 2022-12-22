@@ -1,28 +1,7 @@
 fileFormatVersion: 2
-guid: 3cfd31923e78cc44abd4cd1ed3bd8972
+guid: a17ed03b4660a744e8d8c4c766824453
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: -8644889942409211090
-    second: Head
-  - first:
-      213: 7180195895192826059
-    second: ArmUp
-  - first:
-      213: -6622732464455020030
-    second: Body
-  - first:
-      213: 8222604357750818144
-    second: ArmDown
-  - first:
-      213: -4004527290698857321
-    second: Hand
-  - first:
-      213: -6033885931137250393
-    second: Leg
-  - first:
-      213: 5923240033370958429
-    second: Feet
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -62,7 +41,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 32
   spriteMeshType: 0
   alignment: 0
@@ -182,154 +161,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: Head
-      rect:
-        serializedVersion: 2
-        x: 24
-        y: 733
-        width: 414
-        height: 347
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e231a54666e270880800000000000000
-      internalID: -8644889942409211090
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ArmUp
-      rect:
-        serializedVersion: 2
-        x: 830
-        y: 851
-        width: 134
-        height: 214
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bc0bfa6df1e25a360800000000000000
-      internalID: 7180195895192826059
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Body
-      rect:
-        serializedVersion: 2
-        x: 105
-        y: 98
-        width: 354
-        height: 293
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 20216bd89e35714a0800000000000000
-      internalID: -6622732464455020030
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ArmDown
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 502
-        width: 200
-        height: 268
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0650150291f8c1270800000000000000
-      internalID: 8222604357750818144
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Hand
-      rect:
-        serializedVersion: 2
-        x: 787
-        y: 414
-        width: 231
-        height: 219
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 794898065af0d68c0800000000000000
-      internalID: -4004527290698857321
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Leg
-      rect:
-        serializedVersion: 2
-        x: 213
-        y: 473
-        width: 104
-        height: 187
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7ab465be6b4534ca0800000000000000
-      internalID: -6033885931137250393
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Feet
-      rect:
-        serializedVersion: 2
-        x: 794
-        y: 6
-        width: 270
-        height: 248
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d5ae27c7d63933250800000000000000
-      internalID: 5923240033370958429
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []

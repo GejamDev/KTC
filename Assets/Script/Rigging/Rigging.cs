@@ -113,6 +113,7 @@ public class Bone
     public BoneObject boneObject;
     public Transform jointStart;
     public Transform jointEnd;
+    [Range(0, 20)]
     public float thiccness = 1;
 
 }

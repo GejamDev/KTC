@@ -14,8 +14,8 @@ public enum LocalCenterType
 [RequireComponent(typeof(SpriteRenderer))]
 public class PixelateSprite : MonoBehaviour
 {
-    SpriteRenderer sr;
-    const string materialName = "Own";
+    [HideInInspector]public SpriteRenderer sr;
+    const string materialName = "PixelateSprite_Clone";
     public bool worldSpace = true;
     [HideInInspector] public LocalCenterType localCenterType;
     public Transform parent;
@@ -35,6 +35,7 @@ public class PixelateSprite : MonoBehaviour
         sr.material = mat;
         mat.name = materialName;
         sr.sharedMaterial = mat;
+        parent = transform;
     }
 
     private void Update()
