@@ -35,7 +35,8 @@ public class PixelateSprite : MonoBehaviour
         sr.material = mat;
         mat.name = materialName;
         sr.sharedMaterial = mat;
-        parent = transform;
+        if (parent == null)
+            parent = transform;
     }
 
     private void Update()
