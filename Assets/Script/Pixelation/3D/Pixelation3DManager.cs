@@ -10,28 +10,26 @@ public class Pixelation3DManager : MonoBehaviour
     public Camera pixelCam;
     public RenderTexture pixelTextureSource;
     public float pixelatedAmount = 16;
+    public Material pixelatedScreenMat;
 
     private void Update()
     {
         Setresolution();
     }
-    Vector2 prePixelTexRes;
     public void Setresolution()
     {
-        pixelCam.orthographicSize = mainCam.orthographicSize;
-        float camSize = mainCam.orthographicSize;
+        //pixelCam.orthographicSize = mainCam.orthographicSize;
+        float pixelSize = pixelatedAmount / 64;
+        //pixelCam.transform.position = Vector2.zero;//new Vector2(mainCam.transform.position.x - mainCam.transform.position.x % pixelSize, mainCam.transform.position.y - mainCam.transform.position.y % pixelSize);
+        //pixelatedScreen.transform.position = pixelCam.transform.position;
+        //pixelatedScreen.transform.parent.position = pixelCam.transform.localPosition;
+        //pixelCam.transform.position = new Vector2(pixelCam.transform.position.x - pixelCam.transform.position.x % pixelSize, pixelCam.transform.position.y - pixelCam.transform.position.y % pixelSize);
+        float camSize = pixelCam.orthographicSize;
         pixelatedScreen.sizeDelta = new Vector2(32 * camSize / 9, 2 * camSize);
+        pixelatedScreenMat.SetFloat("_PixelateAmount", pixelatedAmount);
+        pixelatedScreenMat.SetFloat("_Scale", pixelCam.orthographicSize * 128 /pixelTextureSource.height);
+        pixelatedScreenMat.SetVector("_Position", pixelatedScreen.transform.position);
 
 
-
-        Vector2Int size = new Vector2Int((int)(1920/pixelatedAmount * camSize), (int)(1080 / pixelatedAmount * camSize));
-        if (size != prePixelTexRes)
-        {
-            //set res
-            pixelTextureSource.Release();
-            pixelTextureSource.width = size.x;
-            pixelTextureSource.height = size.y;
-        }
-        prePixelTexRes = size;
     }
 }
