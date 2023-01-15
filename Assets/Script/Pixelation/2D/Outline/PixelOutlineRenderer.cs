@@ -64,18 +64,19 @@ public class PixelOutlineRenderer : MonoBehaviour
         }
         sr.color = Color.white;
         sr.sprite = targetSprite.sr.sprite;
+        sr.sortingOrder = targetSprite.sr.sortingOrder - 1;
 
 
         transform.position = targetSprite.transform.position;
 
-        transform.localScale = Vector2.one;
+        transform.localScale = Vector3.one;
 
 
         float xthiccness = thickness / targetSprite.sr.sprite.rect.width* targetSprite.pixelateAmount / targetSprite.transform.lossyScale.x * 2;
         float ythiccness = thickness / targetSprite.sr.sprite.rect.height * targetSprite.pixelateAmount / targetSprite.transform.lossyScale.y * 2;
         //transform.localScale = new Vector2(1 + xthiccness, 1 + ythiccness);
         //transform.localScale = Vector2.one * 2;
-        transform.localScale = Vector2.one * scaler;
+        transform.localScale = Vector3.one * scaler;
 
         transform.eulerAngles = new Vector3(0, 0, targetSprite.transform.eulerAngles.z);
         Vector2 position = transform.position;
@@ -95,7 +96,7 @@ public class PixelOutlineRenderer : MonoBehaviour
                     if (targetSprite.parent != null)
                     {
                         //set parent size
-                        targetSprite.parent.localScale = new Vector2(targetSprite.parent.localScale.x / targetSprite.parent.lossyScale.x, targetSprite.parent.localScale.y / targetSprite.parent.lossyScale.y);
+                        targetSprite.parent.localScale = new Vector3(targetSprite.parent.localScale.x / targetSprite.parent.lossyScale.x, targetSprite.parent.localScale.y / targetSprite.parent.lossyScale.y, 1);
 
 
 

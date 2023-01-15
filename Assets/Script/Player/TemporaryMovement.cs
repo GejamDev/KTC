@@ -21,13 +21,13 @@ public class TemporaryMovement : MonoBehaviour
         rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * movespeed, rb.velocity.y);
         if (Input.GetKeyDown(KeyCode.W))
         {
-            rb.AddForce(Vector2.up * jumpforce, ForceMode2D.Impulse);
+            rb.velocity = Vector2.up * jumpforce;
         }
         if (Input.GetAxisRaw("Horizontal") != 0)
         {
             lastdir = (int)Input.GetAxisRaw("Horizontal");
         }
-        an.transform.localScale = new Vector2(Mathf.Lerp(an.transform.localScale.x, lastdir, Time.deltaTime*rottime), 1);
+        an.transform.localScale = new Vector3(Mathf.Lerp(an.transform.localScale.x, lastdir, Time.deltaTime*rottime), 1, 1);
         an.SetBool("running", Input.GetAxisRaw("Horizontal") != 0);
     }
 }

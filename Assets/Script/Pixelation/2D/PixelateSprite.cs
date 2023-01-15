@@ -10,7 +10,7 @@ public enum LocalCenterType
     Transform,Position
 }
 
-[ExecuteInEditMode]
+[ExecuteAlways]
 [RequireComponent(typeof(SpriteRenderer))]
 public class PixelateSprite : MonoBehaviour
 {
@@ -22,7 +22,10 @@ public class PixelateSprite : MonoBehaviour
     public bool onlyOffsetPos;
     public Vector2 localCenterPosition;
     public float threshold = 0.95f;
+    public bool followUniversalPixelateAmount = true;
     public float pixelateAmount = 16;
+    [ColorUsage(true, true)]
+    public Color glowColor;
 
     private void Awake()
     {
@@ -39,22 +42,20 @@ public class PixelateSprite : MonoBehaviour
             parent = transform;
     }
 
-    private void Update()
-    {
-        if (Application.isEditor)
-        {
-            PassInfoToShader();
-        }
-    }
     private void FixedUpdate()
     {
-        if (Application.isPlaying)
-        {
-            PassInfoToShader();
-        }
+
+    }
+    private void Update()
+    {
+        PassInfoToShader();
     }
     void PassInfoToShader()
     {
+        if (followUniversalPixelateAmount)
+        {
+            pixelateAmount = PlayerPrefs.GetFloat("UniversalPixelateAmount");
+        }
         Vector2 position = transform.position;
         Vector2 scale = transform.lossyScale;
         float rotation = transform.eulerAngles.z;
@@ -72,8 +73,7 @@ public class PixelateSprite : MonoBehaviour
                     if (parent != null)
                     {
                         //set parent size
-                        parent.localScale = new Vector2(parent.localScale.x/ parent.lossyScale.x, parent.localScale.y / parent.lossyScale.y);
-
+                        parent.localScale = new Vector3(parent.localScale.x/ parent.lossyScale.x, parent.localScale.y / parent.lossyScale.y, 1);
 
 
                         //offset transform
@@ -111,6 +111,7 @@ public class PixelateSprite : MonoBehaviour
         sr.sharedMaterial.SetFloat("_Pixelate", pixelateAmount);
         sr.sharedMaterial.SetVector("_SpriteAtlasSize", new Vector2(sr.sprite.rect.width, sr.sprite.rect.height));
         sr.sharedMaterial.SetVector("_SpriteAtlasOffset", sr.sprite.rect.position);
+        sr.sharedMaterial.SetColor("_GlowColor", glowColor);
     }
 }
 #if UNITY_EDITOR
@@ -123,7 +124,9 @@ class PixelateSpriteEditor : Editor
     SerializedProperty localCenterPosition;
     SerializedProperty threshold;
     SerializedProperty pixelateAmount;
+    SerializedProperty followUniversalPixelateAmount;
     SerializedProperty onlyOffsetPosition;
+    SerializedProperty glowColor;
 
     private void OnEnable()
     {
@@ -133,7 +136,9 @@ class PixelateSpriteEditor : Editor
         localCenterPosition = serializedObject.FindProperty("localCenterPosition");
         threshold = serializedObject.FindProperty("threshold");
         pixelateAmount = serializedObject.FindProperty("pixelateAmount");
+        followUniversalPixelateAmount = serializedObject.FindProperty("followUniversalPixelateAmount");
         onlyOffsetPosition = serializedObject.FindProperty("onlyOffsetPos");
+        glowColor = serializedObject.FindProperty("glowColor");
     }
     public override void OnInspectorGUI()
     {
@@ -167,7 +172,9 @@ class PixelateSpriteEditor : Editor
         GUILayout.Space(20);
         GUILayout.Label("Property", fontStyle);
         EditorGUILayout.PropertyField(threshold);
+        EditorGUILayout.PropertyField(followUniversalPixelateAmount);
         EditorGUILayout.PropertyField(pixelateAmount);
+        EditorGUILayout.PropertyField(glowColor);
 
 
         serializedObject.ApplyModifiedProperties();

@@ -2,15 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[ExecuteInEditMode]
+[ExecuteAlways]
 public class Pixelation3DManager : MonoBehaviour
 {
-    public RectTransform pixelatedScreen;
+    public PixelationBundle[] pixelationBundle;
     public Camera mainCam;
-    public Camera pixelCam;
-    public RenderTexture pixelTextureSource;
     public float pixelatedAmount = 16;
-    public Material pixelatedScreenMat;
 
     private void Update()
     {
@@ -18,18 +15,46 @@ public class Pixelation3DManager : MonoBehaviour
     }
     public void Setresolution()
     {
-        //pixelCam.orthographicSize = mainCam.orthographicSize;
+        //get pixelScale
+        pixelatedAmount = PlayerPrefs.GetFloat("UniversalPixelateAmount");
         float pixelSize = pixelatedAmount / 64;
-        //pixelCam.transform.position = Vector2.zero;//new Vector2(mainCam.transform.position.x - mainCam.transform.position.x % pixelSize, mainCam.transform.position.y - mainCam.transform.position.y % pixelSize);
-        //pixelatedScreen.transform.position = pixelCam.transform.position;
-        //pixelatedScreen.transform.parent.position = pixelCam.transform.localPosition;
-        //pixelCam.transform.position = new Vector2(pixelCam.transform.position.x - pixelCam.transform.position.x % pixelSize, pixelCam.transform.position.y - pixelCam.transform.position.y % pixelSize);
-        float camSize = pixelCam.orthographicSize;
-        pixelatedScreen.sizeDelta = new Vector2(32 * camSize / 9, 2 * camSize);
-        pixelatedScreenMat.SetFloat("_PixelateAmount", pixelatedAmount);
-        pixelatedScreenMat.SetFloat("_Scale", pixelCam.orthographicSize * 128 /pixelTextureSource.height);
-        pixelatedScreenMat.SetVector("_Position", pixelatedScreen.transform.position);
 
+        foreach(PixelationBundle pb in pixelationBundle)
+        {
+            //get objects
+            Camera pCam = pb.pixelCam;
+            RectTransform pScreen = pb.pixelatedScreen;
+            Material pMat = pb.pixelatedScreenMat;
+            RenderTexture pTex = pb.pixelTextureSource;
+
+            //move cam
+
+
+            ////follows main cam(but jittery pixel)
+            pCam.transform.localPosition = new Vector3(0, 0, pCam.transform.localPosition.z);
+            pScreen.transform.localPosition = new Vector3(0, 0, pScreen.transform.localPosition.z);
+
+            //don't follow , but has stable pixel
+            //pCam.transform.position = new Vector3(0, 0, pCam.transform.position.z);
+            //pScreen.transform.position = new Vector3(0, 0, pScreen.transform.position.z);
+
+            //set pixel size and stuff
+            float camSize = pCam.orthographicSize;
+            pScreen.sizeDelta = new Vector2(32 * camSize / 9, 2 * camSize);
+            pb.pixelatedScreenMat.SetFloat("_PixelateAmount", pixelatedAmount);
+            pb.pixelatedScreenMat.SetFloat("_Scale", pCam.orthographicSize * 128 / pTex.height);
+            pb.pixelatedScreenMat.SetVector("_Position", pScreen.position);
+
+        }
 
     }
+}
+
+[System.Serializable]
+public class PixelationBundle
+{
+    public RectTransform pixelatedScreen;
+    public Camera pixelCam;
+    public RenderTexture pixelTextureSource;
+    public Material pixelatedScreenMat;
 }

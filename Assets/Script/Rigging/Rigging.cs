@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[ExecuteInEditMode]
+[ExecuteAlways]
 public class Rigging : MonoBehaviour
 {
     public List<Bone> bones = new List<Bone>();
 
     public void Update()
     {
-        transform.localScale = Vector2.one;
+        transform.localScale = Vector3.one;
         foreach(Bone b in bones)
         {
             ApplyBoneTransformation(b);
@@ -82,7 +82,7 @@ public class Rigging : MonoBehaviour
 
         //scale
         Vector2 targetscale = new Vector2(b.thiccness, dir.magnitude / dir_injoint.magnitude);
-        g.transform.localScale = new Vector2(targetscale.x * (g.transform.localScale.x / g.transform.lossyScale.x), targetscale.y * (g.transform.localScale.y / g.transform.lossyScale.y));
+        g.transform.localScale = new Vector3(targetscale.x * (g.transform.localScale.x / g.transform.lossyScale.x), targetscale.y * (g.transform.localScale.y / g.transform.lossyScale.y), 1);
 
 
         //rotation
@@ -94,7 +94,8 @@ public class Rigging : MonoBehaviour
 
 
         //set poisition
-        g.transform.position = (b.jointStart.position + b.jointEnd.position) * 0.5f - ((t1.position + t2.position) * 0.5f - g.transform.position);
+        Vector3 pos = (b.jointStart.position + b.jointEnd.position) * 0.5f - ((t1.position + t2.position) * 0.5f - g.transform.position); ;
+        g.transform.position = new Vector3(pos.x, pos.y, g.transform.position.z);
 
 
 

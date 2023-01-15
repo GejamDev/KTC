@@ -606,7 +606,7 @@
         "m_GuidSerialized": "809e929e-654e-4e97-aff9-042b03d986dc"
     },
     "m_Name": "ScaleY",
-    "m_DefaultReferenceName": "",
+    "m_DefaultReferenceName": "Vector1_0d2e5f8a06bf47609fdcd609db2d4bbc",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
@@ -797,7 +797,7 @@
         "m_GuidSerialized": "9b5b3ad3-cea3-4566-ae05-0bb70140115d"
     },
     "m_Name": "ScaleX",
-    "m_DefaultReferenceName": "",
+    "m_DefaultReferenceName": "Vector1_24df17aa8e814b409d9ea49e6483f3ea",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
@@ -931,7 +931,7 @@
         "m_GuidSerialized": "3be764c6-488e-4207-81b0-721dc8446b7e"
     },
     "m_Name": "Rotation",
-    "m_DefaultReferenceName": "",
+    "m_DefaultReferenceName": "Vector1_35cec1fb5673468fa679b31f8f9aa5a8",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
@@ -996,7 +996,7 @@
         "m_GuidSerialized": "de7a087d-c746-443d-aa35-e1a9b0fa3a25"
     },
     "m_Name": "SpriteAtlasOffset",
-    "m_DefaultReferenceName": "",
+    "m_DefaultReferenceName": "Vector2_40eac21c153142d090e938d7411506e3",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
@@ -1067,7 +1067,7 @@
         "m_GuidSerialized": "3cbf3350-9a66-40e5-a830-61768a914164"
     },
     "m_Name": "MainTex",
-    "m_DefaultReferenceName": "",
+    "m_DefaultReferenceName": "Texture2D_4e644537f7094315bfc1d8b1aaa876aa",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
@@ -1355,7 +1355,7 @@
         "m_GuidSerialized": "3f2f01ad-7f38-4e67-a6d7-ffd6ada62558"
     },
     "m_Name": "Vector4",
-    "m_DefaultReferenceName": "",
+    "m_DefaultReferenceName": "Vector4_75b30ba9d3b64ef098ff035b3a9210c6",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
@@ -2217,7 +2217,7 @@
         "m_GuidSerialized": "19f05dd8-e2c6-4c5c-908c-4cf596d5c594"
     },
     "m_Name": "SpriteAtlasSize",
-    "m_DefaultReferenceName": "",
+    "m_DefaultReferenceName": "Vector2_eb34e99e293046febc460f7b7a961df3",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,

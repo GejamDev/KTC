@@ -68,7 +68,7 @@ public class PixelLineRenderer : MonoBehaviour
                 miny = t.position.y;
         }
         transform.position = (new Vector2(maxx, maxy) + new Vector2(minx, miny)) * 0.5f;
-        transform.localScale = new Vector2(maxx - minx + 1, maxy - miny + 1);
+        transform.localScale = new Vector3(maxx - minx + 1, maxy - miny + 1, 1);
 
 
 
