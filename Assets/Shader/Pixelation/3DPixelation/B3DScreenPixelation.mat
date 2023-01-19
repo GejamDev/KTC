@@ -52,8 +52,8 @@ Material:
     - Vector1_bed9b5fac3a14b9c88d0a47461e5074f: 0
     - Vector1_d68ab1c43a09407b8796fed80fc80990: 0
     - _PixelateAmount: 32
-    - _Scale: 2.3703704
+    - _Scale: 3.7925925
     m_Colors:
     - Vector2_3e4f0187a98c4a5ba691a15f251fb015: {r: 0, g: 0, b: 0, a: 0}
-    - _Position: {r: 0, g: -11, b: -650, a: 0}
+    - _Position: {r: 0, g: 0, b: -650, a: 0}
   m_BuildTextureStacks: []

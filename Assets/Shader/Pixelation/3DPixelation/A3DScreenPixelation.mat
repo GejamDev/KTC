@@ -56,5 +56,5 @@ Material:
     - _Scale: 3.7925925
     m_Colors:
     - Vector2_3e4f0187a98c4a5ba691a15f251fb015: {r: 0, g: 0, b: 0, a: 0}
-    - _Position: {r: 0, g: -11, b: -300, a: 0}
+    - _Position: {r: 0, g: 0, b: -300, a: 0}
   m_BuildTextureStacks: []
