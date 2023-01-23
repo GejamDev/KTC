@@ -41,3 +41,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: PixelatedScreen
+    uniqueID: 4249088197
+    locked: 0
