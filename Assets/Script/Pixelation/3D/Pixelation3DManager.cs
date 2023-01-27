@@ -13,11 +13,12 @@ public class Pixelation3DManager : MonoBehaviour
     public bool outline;
     [ColorUsage(true, true)]
     public Color outlineColor;
-    private void Update()
+    private void LateUpdate()
     {
         Setresolution();
         SetGlobalShaderVariable();
     }
+
     public void Setresolution()
     {
         //get pixelScale

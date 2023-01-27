@@ -45,7 +45,7 @@ public class PixelOutlineRenderer : MonoBehaviour
             SetOutLine();
         }
     }
-    private void FixedUpdate()
+    private void LateUpdate()
     {
         if (Application.isPlaying)
         {
