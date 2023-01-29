@@ -11,7 +11,7 @@ public class DepthCam_CopyProperties : MonoBehaviour
     private void Update()
     {
         thisCam.orthographicSize = pixelCam.orthographicSize;
-        thisCam.farClipPlane = pixelCam.farClipPlane + 0.1f;
+        thisCam.farClipPlane = pixelCam.farClipPlane;
         thisCam.nearClipPlane = pixelCam.nearClipPlane;
     }
 }
