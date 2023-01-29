@@ -90,6 +90,9 @@ public class Pixelation3DManager : MonoBehaviour
         Shader.SetGlobalFloat("_PixelCamDistance", pixelationBundle.pixelCam.farClipPlane);
         Shader.SetGlobalFloat("_CamSize", mainCam.orthographicSize);
         Shader.SetGlobalFloat("_PixelCamSize", pixelationBundle.pixelCam.orthographicSize);
+        Shader.SetGlobalFloat("_DefaultCamID", mainCam.farClipPlane);
+        Shader.SetGlobalFloat("_3DPixelCamID", pixelationBundle.pixelCam.farClipPlane);
+        Shader.SetGlobalFloat("_3DInfoCamID", pixelationBundle.infoCam.farClipPlane);
     }
 }
 
@@ -98,6 +101,7 @@ public class PixelationBundle
 {
     public RectTransform pixelatedScreen;
     public Camera pixelCam;
+    public Camera infoCam;
     public RenderTexture pixelTextureSource;
     public Material pixelatedScreenMat;
     public Vector2 pivot;

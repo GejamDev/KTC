@@ -42,10 +42,6 @@ public class PixelateSprite : MonoBehaviour
             parent = transform;
     }
 
-    //private void FixedUpdate()
-    //{
-
-    //}
     private void LateUpdate()
     {
         PassInfoToShader();

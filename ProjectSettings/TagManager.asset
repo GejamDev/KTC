@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - PixelCam
+  - PixelDepthCam
   layers:
   - Default
   - TransparentFX
@@ -12,9 +14,9 @@ TagManager:
   - Water
   - UI
   - Outline
-  - 0_3DPixelation
-  - 1_3DPixelation
-  - 2_3DPixelation
+  - 3DPixelation
+  - 
+  - 
   - 
   - 
   - 

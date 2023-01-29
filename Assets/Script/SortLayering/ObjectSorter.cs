@@ -91,7 +91,8 @@ public class ObjectSorter : MonoBehaviour
                 ClampZPos(startpoint - Obj3DSpace, startpoint);
 
                 //set layer
-                gameObject.layer = LayerMask.NameToLayer((layer * 0.5f - 0.5f).ToString() + "_3DPixelation");
+                //Debug.Log(gameObject.name);
+                //gameObject.layer = LayerMask.NameToLayer((layer * 0.5f - 0.5f).ToString() + "_3DPixelation");
                 break;
             case SortingObjectType.PixScreen:
 
