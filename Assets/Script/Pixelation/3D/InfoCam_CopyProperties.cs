@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteAlways]
-public class DepthCam_CopyProperties : MonoBehaviour
+public class InfoCam_CopyProperties : MonoBehaviour
 {
     public Camera pixelCam;
     public Camera thisCam;
