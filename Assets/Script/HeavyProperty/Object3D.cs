@@ -41,13 +41,12 @@ public class Object3D : MonoBehaviour
     //outline
     public bool outline;
     public Color outlineColor;
-    [Range(0, 10)] public float outlineBrightness = 1;
+    [Range(0, 15)] public float outlineBrightness = 1;
 
     //mesh renderer
     Object3DMeshType meshType = Object3DMeshType.None;
     MeshRenderer meshRenderer;
     SkinnedMeshRenderer skinnedMeshRenderer;
-
 
     private void Awake()
     {
