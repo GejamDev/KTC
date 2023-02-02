@@ -633,9 +633,6 @@
             "m_Id": "33cbe2220fcf4da192c25fbb599119e8"
         },
         {
-            "m_Id": "48bb6326616d40319fd5356b8d236a46"
-        },
-        {
             "m_Id": "fe3a3c3d2bdb40d98b0910232e3961bb"
         },
         {
@@ -676,20 +673,6 @@
         -1598184684,
         541642127
     ]
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.BooleanMaterialSlot",
-    "m_ObjectId": "48bb6326616d40319fd5356b8d236a46",
-    "m_Id": 1895494118,
-    "m_DisplayName": "IsDepthTexture",
-    "m_SlotType": 0,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "Boolean_c0615e4c03234bf1976fca0f944f3fc6",
-    "m_StageCapability": 2,
-    "m_Value": false,
-    "m_DefaultValue": false
 }
 
 {
