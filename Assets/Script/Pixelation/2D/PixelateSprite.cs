@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -12,10 +13,13 @@ public enum LocalCenterType
 
 [ExecuteAlways]
 [RequireComponent(typeof(SpriteRenderer))]
+[DisallowMultipleComponent]
 public class PixelateSprite : MonoBehaviour
 {
     [HideInInspector]public SpriteRenderer sr;
     const string materialName = "PixelateSprite_Clone";
+    const string layerName = "PixelatedSprite";
+    const string depthCameraName = "SpriteDepthCamera";
     public bool worldSpace = true;
     [HideInInspector] public LocalCenterType localCenterType;
     public Transform parent;
@@ -27,6 +31,10 @@ public class PixelateSprite : MonoBehaviour
     [ColorUsage(true, true)]
     public Color glowColor;
 
+
+    public Material pixelMaterial;
+    public Material depthMaterial;
+
     private void Awake()
     {
         SetMaterial();
@@ -34,10 +42,10 @@ public class PixelateSprite : MonoBehaviour
     public void SetMaterial()
     {
         sr = GetComponent<SpriteRenderer>();
-        Material mat = Instantiate(Resources.Load<Material>("Material/Pixelate"));
-        sr.material = mat;
-        mat.name = materialName;
-        sr.sharedMaterial = mat;
+        pixelMaterial = Instantiate(Resources.Load<Material>("Material/Pixelate"));
+        sr.material = pixelMaterial;
+        pixelMaterial.name = materialName;
+        sr.sharedMaterial = pixelMaterial;
         if (parent == null)
             parent = transform;
     }
@@ -45,6 +53,15 @@ public class PixelateSprite : MonoBehaviour
     private void LateUpdate()
     {
         PassInfoToShader();
+        SetLayer();
+        if (pixelMaterial == null)
+        {
+            SetMaterial();
+        }
+    }
+    public void SetLayer()
+    {
+        gameObject.layer = LayerMask.NameToLayer(layerName);
     }
     void PassInfoToShader()
     {
@@ -69,8 +86,10 @@ public class PixelateSprite : MonoBehaviour
                     if (parent != null)
                     {
                         //set parent size
-                        parent.localScale = new Vector3(parent.localScale.x/ parent.lossyScale.x, parent.localScale.y / parent.lossyScale.y, 1);
-
+                        if (parent != transform)
+                        {
+                            parent.localScale = new Vector3(parent.localScale.x / parent.lossyScale.x, parent.localScale.y / parent.lossyScale.y, 1);
+                        }
 
                         //offset transform
                         Vector2 relativePosition = position - (Vector2)parent.position;
@@ -94,21 +113,68 @@ public class PixelateSprite : MonoBehaviour
             }
         }
 
+        void PassInfoTo(Material mat)
+        {
+            if (mat == null)
+                return;
 
+            mat.SetFloat("_Rotation", rotation);
+            mat.SetFloat("_PosX", position.x);
+            mat.SetFloat("_PosY", position.y);
+            mat.SetFloat("_ScaleX", scale.x);
+            mat.SetFloat("_ScaleY", scale.y);
+            mat.SetFloat("_Threshold", threshold);
+            mat.SetFloat("_Pixelate", pixelateAmount);
+            mat.SetVector("_SpriteAtlasSize", new Vector2(sr.sprite.rect.width, sr.sprite.rect.height));
+            mat.SetVector("_SpriteAtlasOffset", sr.sprite.rect.position);
+            mat.SetColor("_GlowColor", glowColor);
+        }
 
-
-
-        sr.sharedMaterial.SetFloat("_Rotation", rotation);
-        sr.sharedMaterial.SetFloat("_PosX", position.x);
-        sr.sharedMaterial.SetFloat("_PosY", position.y);
-        sr.sharedMaterial.SetFloat("_ScaleX", scale.x);
-        sr.sharedMaterial.SetFloat("_ScaleY", scale.y);
-        sr.sharedMaterial.SetFloat("_Threshold", threshold);
-        sr.sharedMaterial.SetFloat("_Pixelate", pixelateAmount);
-        sr.sharedMaterial.SetVector("_SpriteAtlasSize", new Vector2(sr.sprite.rect.width, sr.sprite.rect.height));
-        sr.sharedMaterial.SetVector("_SpriteAtlasOffset", sr.sprite.rect.position);
-        sr.sharedMaterial.SetColor("_GlowColor", glowColor);
+        PassInfoTo(pixelMaterial);
+        PassInfoTo(depthMaterial);
     }
+
+
+
+    #region make setmaterial called when rendering
+    private void OnEnable()
+    {
+        RenderPipelineManager.beginCameraRendering += UpdateMaterial;
+    }
+    private void OnDisable()
+    {
+        RenderPipelineManager.beginCameraRendering -= UpdateMaterial;
+    }
+    private void OnDestroy()
+    {
+        RenderPipelineManager.beginCameraRendering -= UpdateMaterial;
+    }
+    #endregion
+
+
+    public void UpdateMaterial(ScriptableRenderContext context, Camera camera)
+    {
+
+        //get info material
+        if (depthMaterial == null)
+        {
+            depthMaterial = Instantiate(Resources.Load<Material>("Material/SpriteDepth"));
+        }
+
+        switch (camera.name)
+        {
+            case depthCameraName:
+                sr.material = depthMaterial;
+                break;
+            default:
+                sr.material = pixelMaterial;
+                break;
+        }
+
+    }
+
+
+
 }
 #if UNITY_EDITOR
 [CustomEditor(typeof(PixelateSprite)), CanEditMultipleObjects]
@@ -158,7 +224,7 @@ class PixelateSpriteEditor : Editor
                 case LocalCenterType.Transform:
                     EditorGUILayout.PropertyField(parent);
                     EditorGUILayout.PropertyField(onlyOffsetPosition);
-                    EditorGUILayout.HelpBox("warning:parent's size must be stayed at 1x1 !!!!", MessageType.Warning);
+                    EditorGUILayout.HelpBox("warning:parent's size must be stayed at 1x1 !!!!(if it's other object)", MessageType.Warning);
                     break;
                 case LocalCenterType.Position:
                     EditorGUILayout.PropertyField(localCenterPosition);

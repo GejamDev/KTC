@@ -10,9 +10,6 @@ public class Pixelation3DManager : MonoBehaviour
     public float pixelatedAmount = 16;
     public bool followUniversalPixelateAmount = true;
 
-    public bool outline;
-    [ColorUsage(true, true)]
-    public Color outlineColor;
     private void LateUpdate()
     {
         Setresolution();
@@ -77,9 +74,11 @@ public class Pixelation3DManager : MonoBehaviour
         Shader.SetGlobalFloat("_3DPixelatedScreenPixelateAmount", pixelatedAmount);
         //pb.pixelatedScreenMat.SetFloat("_Scale", pCam.orthographicSize * 128 / pTex.height);
         Shader.SetGlobalFloat("_PixelatedScreenScale", pCam.orthographicSize * 128 / pTex.height);
-        Shader.SetGlobalInt("_PixelatedScreenOutline", outline ? 1 : 0);
-        Shader.SetGlobalColor("_PixelatedScreenOutlineColor", outlineColor);
         pb.pixelatedScreenMat.SetVector("_Position", pScreen.position);
+
+
+        //set canvas pos to camera dist
+        //pb.canvas.position = new Vector3(pb.canvas.position.x, pb.canvas.position.y, mainCam.transform.position.z + mainCam.farClipPlane);
 
 
     }
@@ -97,6 +96,7 @@ public class Pixelation3DManager : MonoBehaviour
 public class PixelationBundle
 {
     public RectTransform pixelatedScreen;
+    public Transform canvas;
     public Camera pixelCam;
     public Camera infoCam;
     public RenderTexture pixelTextureSource;

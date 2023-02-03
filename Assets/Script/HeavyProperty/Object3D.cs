@@ -15,8 +15,11 @@ public enum Object3DMeshType
 
 
 [ExecuteAlways]
+[DisallowMultipleComponent]
 public class Object3D : MonoBehaviour
 {
+    UniversalManager um;
+    Object3DManager om;
     const string pixelationLayerName = "3DPixelation";
 
     //camera ids
@@ -28,6 +31,7 @@ public class Object3D : MonoBehaviour
 
     //setting
     public bool pixelate = true;
+    public bool isEmptyObject;
     public Object3D parentObject;
     const int defaultID = -1972;
     public int  object3dID = -1972;
@@ -47,10 +51,15 @@ public class Object3D : MonoBehaviour
     Object3DMeshType meshType = Object3DMeshType.None;
     MeshRenderer meshRenderer;
     SkinnedMeshRenderer skinnedMeshRenderer;
-
     private void Awake()
     {
+        GetManagers();
         UpdateObjectID();
+    }
+    public void GetManagers()
+    {
+        um = FindObjectOfType<UniversalManager>();
+        om = um.object3DManager;
     }
     public void UpdateObjectID()
     {
@@ -63,7 +72,7 @@ public class Object3D : MonoBehaviour
 
         //get every id in scene
         Object3D[] obj3d = FindObjectsOfType<Object3D>();
-        List<int> idList = new List<int>();
+        Dictionary<int, Object3D> idList = new Dictionary<int, Object3D>();
         List<Object3D> problemObjects = new List<Object3D>();
         int maxID = 0;
         foreach (Object3D o in obj3d)
@@ -73,24 +82,27 @@ public class Object3D : MonoBehaviour
                 int id = o.object3dID;
                 if (id != defaultID)
                 {
-                    if (idList.Contains(id))
+                    if (idList.ContainsKey(id))
                     {
                         bool thatIDImplictWasJustBeingChild = true;
-                        if (o.parentObject == null)
+                        if (idList[id].parentObject == o)
+                            thatIDImplictWasJustBeingChild = true;
+                        else if (o.parentObject == null)
                             thatIDImplictWasJustBeingChild = false;
                         else if(o.parentObject.object3dID != id)
                             thatIDImplictWasJustBeingChild = false;
 
+
                         if (!thatIDImplictWasJustBeingChild)
                         {
                             //this object has other object with same id.
-                            Debug.LogWarning($"{o.gameObject.name} had the same id, but i automatically took care of that lol");
+                            Debug.LogWarning($"{o.gameObject.name} had the same id with {idList[id].gameObject.name}, but i automatically took care of that lol");
                             problemObjects.Add(o);
                         }
                     }
                     else
                     {
-                        idList.Add(id);
+                        idList.Add(id, o);
                         if (id > maxID)
                         {
                             maxID = id;
@@ -105,7 +117,7 @@ public class Object3D : MonoBehaviour
         if (idList.Count == 0)
         {
             object3dID = 0;
-            PlayerPrefs.SetInt("MaxObject3DID", 0);
+            om.maxObject3DID = 0;
             return;
         }
         int maxIDBeforeFixingProblemObjects = maxID;
@@ -118,22 +130,26 @@ public class Object3D : MonoBehaviour
 
 
         //set max+1 or unused id
-        PlayerPrefs.SetInt("MaxObject3DID", maxID);
+        om.maxObject3DID = maxID;
         for (int i = 0; i < maxIDBeforeFixingProblemObjects; i++)
         {
-            if (!idList.Contains(i))
+            if (!idList.ContainsKey(i))
             {
                 object3dID = i;
                 return;
             }
         }
         object3dID = maxID + 1;
-        PlayerPrefs.SetInt("MaxObject3DID", object3dID);
+        om.maxObject3DID = object3dID;
     }
 
 
     public void LateUpdate()
     {
+        if (um == null)
+        {
+            GetManagers();
+        }
         if (parentObject != null)
         {
             //copy parent objects property
@@ -143,7 +159,11 @@ public class Object3D : MonoBehaviour
             outlineColor = parentObject.outlineColor;
             outlineBrightness = parentObject.outlineBrightness;
         }
+
+        if (isEmptyObject)
+            return;
         SetLayer();
+
         PassInfoToShader();
     }
     public void SetLayer()
@@ -163,7 +183,7 @@ public class Object3D : MonoBehaviour
 
         //info mat
         infoMaterial.SetFloat("_OutlineBrightness", outline ? outlineBrightness : 0);
-        infoMaterial.SetFloat("_ObjectID", (float)object3dID / (PlayerPrefs.GetInt("MaxObject3DID") + 1));
+        infoMaterial.SetFloat("_ObjectID", (float)object3dID / (om.maxObject3DID + 1));
 
         //outlineColorMat
         outlineColor.a = 1;
@@ -192,17 +212,22 @@ public class Object3D : MonoBehaviour
 
     public void UpdateMaterial(ScriptableRenderContext context, Camera camera)
     {
+        //set object id
+        if (object3dID == defaultID)
+        {
+            UpdateObjectID();
+        }
+
+        if (isEmptyObject)
+            return;
+        if (!pixelate)
+            return;
+
         //get info material
         if (infoMaterial == null)
         {
             infoMaterial = Instantiate(Resources.Load<Material>("Material/3dObjectInfo"));
             outlineColorMaterial = Instantiate(Resources.Load<Material>("Material/3dObjectOutlineColor"));
-        }
-
-        //set object id
-        if (object3dID == defaultID)
-        {
-            UpdateObjectID();
         }
 
         switch (meshType)

@@ -43,6 +43,10 @@ Material:
         m_Texture: {fileID: 8400000, guid: 40287c03ca88d07449392f0ed83a6afc, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _var3DPixelate_42c5e22decd94cf7810b6ea790e184e7_Texture2D35e754c5497d4162a03705b253ccbda0_2666731080:
+        m_Texture: {fileID: 8400000, guid: c453188c8684a2142971d91bcd0805e3, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _var3DPixelate_42c5e22decd94cf7810b6ea790e184e7_Texture2D9a4ddbd8f868418489120f0397dbdd88_3002638164:
         m_Texture: {fileID: 8400000, guid: 3cb786d2ea643644b87b805f5b0227c8, type: 2}
         m_Scale: {x: 1, y: 1}
@@ -86,5 +90,5 @@ Material:
     - Color_6e9997fd98df4398a274cd2fb6327b2a: {r: 0.9121084, g: 0, b: 2, a: 0}
     - Color_bd1e9a11fa1f4740a893c8084b438794: {r: 1.7207954, g: 1.7207954, b: 1.7207954, a: 1}
     - Vector2_3e4f0187a98c4a5ba691a15f251fb015: {r: 0, g: 0, b: 0, a: 0}
-    - _Position: {r: 0, g: 0, b: 256, a: 0}
+    - _Position: {r: 0, g: 0, b: 0.001, a: 0}
   m_BuildTextureStacks: []

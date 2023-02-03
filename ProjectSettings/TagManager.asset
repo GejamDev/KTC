@@ -10,15 +10,15 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Pixelate
+  - 
   - Water
   - UI
   - Outline
   - 3DPixelation
-  - 
-  - 
-  - 
-  - 
+  - PixelatedSprite
+  - 3DPixelationScreen
+  - 2DLight
+  - 3DLight
   - 
   - 
   - 

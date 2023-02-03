@@ -26,6 +26,13 @@ public static class AutomaticScriptAdder
                     obj.AddComponent<Object3D>();
                 }
             }
+            if(obj.TryGetComponent(out SpriteRenderer sr))
+            {
+                if (!obj.GetComponent<PixelateSprite>())
+                {
+                    obj.AddComponent<PixelateSprite>();
+                }
+            }
         }
     }
 }
