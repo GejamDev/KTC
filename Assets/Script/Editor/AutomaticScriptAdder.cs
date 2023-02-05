@@ -28,7 +28,7 @@ public static class AutomaticScriptAdder
             }
             if(obj.TryGetComponent(out SpriteRenderer sr))
             {
-                if (!obj.GetComponent<PixelateSprite>())
+                if (!obj.GetComponent<PixelateSprite>() && !obj.GetComponent<PixelOutlineRenderer>())
                 {
                     obj.AddComponent<PixelateSprite>();
                 }

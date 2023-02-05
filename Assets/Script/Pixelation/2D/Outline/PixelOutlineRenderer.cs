@@ -10,7 +10,7 @@ using UnityEditor;
 public class PixelOutlineRenderer : MonoBehaviour
 {
 
-    SpriteRenderer sr;
+    public SpriteRenderer sr;
     public PixelateSprite targetSprite;
     [ColorUsage(true, true)]
     public Color color;
@@ -25,6 +25,9 @@ public class PixelOutlineRenderer : MonoBehaviour
 
     const string materialName = "PixelOutline_Clone";
 
+    public Material outlineMaterial;
+    public Material depthMaterial;
+
     private void Awake()
     {
         SetMaterial();
@@ -32,10 +35,10 @@ public class PixelOutlineRenderer : MonoBehaviour
     public void SetMaterial()
     {
         sr = GetComponent<SpriteRenderer>();
-        Material mat = Instantiate(Resources.Load<Material>("Material/PixelOutline"));
-        sr.material = mat;
-        mat.name = materialName;
-        sr.sharedMaterial = mat;
+        outlineMaterial = Instantiate(Resources.Load<Material>("Material/PixelOutline"));
+        sr.material = outlineMaterial;
+        outlineMaterial.name = materialName;
+        sr.sharedMaterial = outlineMaterial;
     }
 
     private void Update()
@@ -56,6 +59,13 @@ public class PixelOutlineRenderer : MonoBehaviour
     {
         if (targetSprite == null)
             return;
+
+        if (depthMaterial == null)
+        {
+            depthMaterial = Instantiate(Resources.Load<Material>("Material/OutlineDepth"));
+        }
+
+        targetSprite.outlineRenderer = this;
 
         if (thickness == 0)
         {
@@ -96,7 +106,7 @@ public class PixelOutlineRenderer : MonoBehaviour
                     if (targetSprite.parent != null)
                     {
                         //set parent size
-                        targetSprite.parent.localScale = new Vector3(targetSprite.parent.localScale.x / targetSprite.parent.lossyScale.x, targetSprite.parent.localScale.y / targetSprite.parent.lossyScale.y, 1);
+                        //targetSprite.parent.localScale = new Vector3(targetSprite.parent.localScale.x / targetSprite.parent.lossyScale.x, targetSprite.parent.localScale.y / targetSprite.parent.lossyScale.y, 1);
 
 
 
@@ -116,30 +126,40 @@ public class PixelOutlineRenderer : MonoBehaviour
                             float targetRot = position_rot - parentRot;
                             Vector2 rotatedPosition = new Vector2(Mathf.Cos(targetRot * Mathf.Deg2Rad), Mathf.Sin(targetRot * Mathf.Deg2Rad)) * position.magnitude;
                             position = rotatedPosition;
+
+                            if (targetSprite.parent == targetSprite.transform)
+                            {
+                                //org scale
+                                scale = targetSprite.orgScale;
+                            }
                         }
                     }
                     break;
             }
         }
 
+        void PassInfoTo(Material m)
+        {
+            //outline
+            m.SetColor("_OutlineColor", color);
+            m.SetFloat("_Thickness", thickness);
+            m.SetFloat("_Scaler", 1 / scaler);
+            m.SetInt("_Corner", corner ? 1 : 0);
 
+            //pixelation
+            m.SetFloat("_Rotation", rotation);
+            m.SetFloat("_PosX", position.x);
+            m.SetFloat("_PosY", position.y);
+            m.SetFloat("_ScaleX", scale.x);
+            m.SetFloat("_ScaleY", scale.y);
+            m.SetFloat("_Threshold", targetSprite.threshold);
+            m.SetFloat("_Pixelate", targetSprite.pixelateAmount);
+            m.SetVector("_SpriteAtlasSize", new Vector2(sr.sprite.rect.width, sr.sprite.rect.height));
+            m.SetVector("_SpriteAtlasOffset", sr.sprite.rect.position);
+        }
+        PassInfoTo(outlineMaterial);
+        PassInfoTo(depthMaterial);
 
-        //outline
-        sr.sharedMaterial.SetColor("_OutlineColor", color);
-        sr.sharedMaterial.SetFloat("_Thickness", thickness);
-        sr.sharedMaterial.SetFloat("_Scaler", 1/scaler);
-        sr.sharedMaterial.SetInt("_Corner", corner ? 1 : 0);
-
-        //pixelation
-        sr.sharedMaterial.SetFloat("_Rotation", rotation);
-        sr.sharedMaterial.SetFloat("_PosX", position.x);
-        sr.sharedMaterial.SetFloat("_PosY", position.y);
-        sr.sharedMaterial.SetFloat("_ScaleX", scale.x);
-        sr.sharedMaterial.SetFloat("_ScaleY", scale.y);
-        sr.sharedMaterial.SetFloat("_Threshold", targetSprite.threshold);
-        sr.sharedMaterial.SetFloat("_Pixelate", targetSprite.pixelateAmount);
-        sr.sharedMaterial.SetVector("_SpriteAtlasSize", new Vector2(sr.sprite.rect.width, sr.sprite.rect.height));
-        sr.sharedMaterial.SetVector("_SpriteAtlasOffset", sr.sprite.rect.position);
     }
 }
 #if UNITY_EDITOR

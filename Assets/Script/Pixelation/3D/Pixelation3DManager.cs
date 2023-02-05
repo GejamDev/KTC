@@ -43,6 +43,11 @@ public class Pixelation3DManager : MonoBehaviour
         Vector2 PivotResetDistance = pixelCamPivotGrid * 0.5f;
 
 
+        //set pixelcam distance to cam distance;
+        pCam.farClipPlane = mainCam.farClipPlane;
+        pCam.nearClipPlane = mainCam.nearClipPlane;
+
+
         //check if pivot should be resetted
         if (mainCam.transform.position.x > pb.pivot.x + PivotResetDistance.x)
         {
@@ -77,10 +82,6 @@ public class Pixelation3DManager : MonoBehaviour
         pb.pixelatedScreenMat.SetVector("_Position", pScreen.position);
 
 
-        //set canvas pos to camera dist
-        //pb.canvas.position = new Vector3(pb.canvas.position.x, pb.canvas.position.y, mainCam.transform.position.z + mainCam.farClipPlane);
-
-
     }
     public void SetGlobalShaderVariable()
     {
@@ -89,6 +90,21 @@ public class Pixelation3DManager : MonoBehaviour
         Shader.SetGlobalFloat("_PixelCamDistance", pixelationBundle.pixelCam.farClipPlane);
         Shader.SetGlobalFloat("_CamSize", mainCam.orthographicSize);
         Shader.SetGlobalFloat("_PixelCamSize", pixelationBundle.pixelCam.orthographicSize);
+    }
+    private void OnDrawGizmos()
+    {
+        float verticalHeightSeen = mainCam.orthographicSize * 2.0f;
+        float far = mainCam.farClipPlane;
+        float near = mainCam.nearClipPlane;
+        float zdist = far - near;
+
+        //box
+        Gizmos.color = new Color(1, 1, 1, 0.5f);
+        Gizmos.DrawWireCube(transform.position + (zdist + near * 2) * Vector3.forward * 0.5f, new Vector3((verticalHeightSeen * Camera.main.aspect), verticalHeightSeen, zdist));
+
+        //point
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireCube(transform.position + near * Vector3.forward * 0.5f, new Vector3((verticalHeightSeen * Camera.main.aspect), verticalHeightSeen, 0));
     }
 }
 

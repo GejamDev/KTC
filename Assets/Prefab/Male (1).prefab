@@ -812,8 +812,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1667885201914083269}
   - component: {fileID: 1667885201914083270}
-  - component: {fileID: 1667885201914083271}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base.objMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -973,24 +972,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.00000011920929, y: -0.18285453, z: 0.050687328}
     m_Extent: {x: 0.847268, y: 0.75623477, z: 0.24242781}
   m_DirtyAABB: 0
---- !u!114 &1667885201914083271
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1667885201914083268}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 280fef10c976bed4da887e1f9bba7f8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pixelate: 0
-  impactChildren: 0
-  object3dID: 4
-  outlineBrightness: 0
-  orgMat:
-  - {fileID: 2100000, guid: 62e1ef5e1d48bf74bb015b37faebe6c9, type: 2}
 --- !u!1 &1667885201922632816
 GameObject:
   m_ObjectHideFlags: 0
@@ -1933,7 +1914,7 @@ GameObject:
   - component: {fileID: 1667885202429217861}
   - component: {fileID: 1667885202429217862}
   - component: {fileID: 1667885202429217863}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: shoes05.objMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2027,11 +2008,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pixelate: 0
-  impactChildren: 0
-  object3dID: 6
-  outlineBrightness: 0
+  isEmptyObject: 0
+  parentObject: {fileID: 0}
+  object3dID: 2
   orgMat:
   - {fileID: 2100000, guid: e86810de3ea6aaf4ab40ebb1a2c4fd62, type: 2}
+  outline: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 0}
+  outlineBrightness: 0
 --- !u!1 &1667885202432053179
 GameObject:
   m_ObjectHideFlags: 0
@@ -3683,7 +3667,7 @@ GameObject:
   - component: {fileID: 1667885203149275822}
   - component: {fileID: 1667885203149275823}
   - component: {fileID: 1667885203149275816}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: short04.objMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3789,11 +3773,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pixelate: 0
-  impactChildren: 0
+  isEmptyObject: 0
+  parentObject: {fileID: 0}
   object3dID: 2
-  outlineBrightness: 0
   orgMat:
   - {fileID: 2100000, guid: 2a6cc840f5e595d47a68f4da90f79320, type: 2}
+  outline: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 0}
+  outlineBrightness: 0
 --- !u!1 &1667885203156953845
 GameObject:
   m_ObjectHideFlags: 0
@@ -4117,7 +4104,7 @@ GameObject:
   - component: {fileID: 1667885203303236739}
   - component: {fileID: 1667885203303236748}
   - component: {fileID: 1667885203303236749}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: male_casualsuit05.objMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4249,11 +4236,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pixelate: 0
-  impactChildren: 0
-  object3dID: 3
-  outlineBrightness: 0
+  isEmptyObject: 0
+  parentObject: {fileID: 0}
+  object3dID: 2
   orgMat:
   - {fileID: 2100000, guid: 78c1cdaed2811f94ebea3d5fb6ad0e98, type: 2}
+  outline: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 0}
+  outlineBrightness: 0
 --- !u!1 &1667885203315609569
 GameObject:
   m_ObjectHideFlags: 0

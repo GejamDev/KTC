@@ -17,13 +17,20 @@ public enum LocalCenterType
 public class PixelateSprite : MonoBehaviour
 {
     [HideInInspector]public SpriteRenderer sr;
+
+
+    //const value
     const string materialName = "PixelateSprite_Clone";
     const string layerName = "PixelatedSprite";
     const string depthCameraName = "SpriteDepthCamera";
+
+
+    //settings
     public bool worldSpace = true;
-    [HideInInspector] public LocalCenterType localCenterType;
+    public LocalCenterType localCenterType;
     public Transform parent;
     public bool onlyOffsetPos;
+    public Vector2 orgScale = Vector2.one;
     public Vector2 localCenterPosition;
     public float threshold = 0.95f;
     public bool followUniversalPixelateAmount = true;
@@ -34,6 +41,9 @@ public class PixelateSprite : MonoBehaviour
 
     public Material pixelMaterial;
     public Material depthMaterial;
+
+    public bool outline;
+    public PixelOutlineRenderer outlineRenderer;
 
     private void Awake()
     {
@@ -90,6 +100,10 @@ public class PixelateSprite : MonoBehaviour
                         {
                             parent.localScale = new Vector3(parent.localScale.x / parent.lossyScale.x, parent.localScale.y / parent.lossyScale.y, 1);
                         }
+                        else
+                        {
+
+                        }
 
                         //offset transform
                         Vector2 relativePosition = position - (Vector2)parent.position;
@@ -107,6 +121,12 @@ public class PixelateSprite : MonoBehaviour
                             float targetRot = position_rot - parentRot;
                             Vector2 rotatedPosition = new Vector2(Mathf.Cos(targetRot * Mathf.Deg2Rad), Mathf.Sin(targetRot * Mathf.Deg2Rad))*position.magnitude;
                             position = rotatedPosition;
+
+                            if (parent == transform)
+                            {
+                                //org scale
+                                scale = orgScale;
+                            }
                         }
                     }
                     break;
@@ -160,14 +180,22 @@ public class PixelateSprite : MonoBehaviour
         {
             depthMaterial = Instantiate(Resources.Load<Material>("Material/SpriteDepth"));
         }
-
+        bool hasOutline = outlineRenderer != null;
         switch (camera.name)
         {
             case depthCameraName:
                 sr.material = depthMaterial;
+                if (hasOutline)
+                {
+                    outlineRenderer.sr.material = outlineRenderer.depthMaterial;
+                }
                 break;
             default:
                 sr.material = pixelMaterial;
+                if (hasOutline)
+                {
+                    outlineRenderer.sr.material = outlineRenderer.outlineMaterial;
+                }
                 break;
         }
 
@@ -189,6 +217,8 @@ class PixelateSpriteEditor : Editor
     SerializedProperty followUniversalPixelateAmount;
     SerializedProperty onlyOffsetPosition;
     SerializedProperty glowColor;
+    SerializedProperty outline;
+    SerializedProperty orgScale;
 
     private void OnEnable()
     {
@@ -201,6 +231,8 @@ class PixelateSpriteEditor : Editor
         followUniversalPixelateAmount = serializedObject.FindProperty("followUniversalPixelateAmount");
         onlyOffsetPosition = serializedObject.FindProperty("onlyOffsetPos");
         glowColor = serializedObject.FindProperty("glowColor");
+        outline = serializedObject.FindProperty("outline");
+        orgScale = serializedObject.FindProperty("orgScale");
     }
     public override void OnInspectorGUI()
     {
@@ -225,6 +257,10 @@ class PixelateSpriteEditor : Editor
                     EditorGUILayout.PropertyField(parent);
                     EditorGUILayout.PropertyField(onlyOffsetPosition);
                     EditorGUILayout.HelpBox("warning:parent's size must be stayed at 1x1 !!!!(if it's other object)", MessageType.Warning);
+                    if (ps.parent == ps.transform)
+                    {
+                        EditorGUILayout.PropertyField(orgScale);
+                    }
                     break;
                 case LocalCenterType.Position:
                     EditorGUILayout.PropertyField(localCenterPosition);
@@ -238,6 +274,17 @@ class PixelateSpriteEditor : Editor
         EditorGUILayout.PropertyField(pixelateAmount);
         EditorGUILayout.PropertyField(glowColor);
 
+        GUILayout.Space(20);
+        GUILayout.Label("Outline", fontStyle);
+        EditorGUILayout.PropertyField(outline);
+        if (ps.outline)
+        {
+            GUILayout.Label("Outline", fontStyle);
+            if (ps.outlineRenderer == null)
+            {
+                Selection.activeTransform = ps.transform;
+            }
+        }
 
         serializedObject.ApplyModifiedProperties();
     }
